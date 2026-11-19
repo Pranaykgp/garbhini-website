@@ -1,0 +1,1095 @@
+<title>Garbhini</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: Garbhini's blush + lavender world. Floating glass nav, arch-framed photo hero (the arch echoes a mandir doorway and a womb),
+   then a calm rhythm of sections, each answering one question a mother has. Single light theme by choice, matching the brand. */
+:root{
+  --bg:#FFFBFA; --surface:#FFFFFF; --cream:#FFF6F2; --tint:#FCEBF1; --lav-tint:#F2ECFB; --peach-tint:#FFEFE6; --leaf-tint:#E8F3EC;
+  --ink:#33262C; --muted:#76646B; --line:#F0E2E7; --plum:#2E2128;
+  --rose:#C2577A; --lav:#9A6FC4; --peach:#E08A5C; --leaf:#4F8F6E; --gold:#E3A33B;
+  --grad:linear-gradient(120deg,#C96A82,#9A6FC4 60%,#E08A5C);
+  --btn:linear-gradient(120deg,#C96A82,#A46FC0);
+  --shadow-sm:0 1px 2px rgba(90,40,70,.06),0 6px 16px -8px rgba(150,70,120,.18);
+  --shadow:0 1px 2px rgba(90,40,70,.05),0 24px 48px -24px rgba(150,70,120,.35);
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:24px; --max:1220px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{background-color:var(--bg);background-image:radial-gradient(1200px 640px at 85% -8%,#FBE0E6 0,transparent 58%),radial-gradient(900px 560px at -12% 14%,#EBE3FA 0,transparent 58%),linear-gradient(#FFF9F7,#FFFBFA 1100px);background-repeat:no-repeat;color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:#FFF9F7}
+a{color:inherit}
+img{display:block}
+h1,h2,h3,h4{font-family:var(--display);font-weight:500;line-height:1.08;letter-spacing:-.02em;text-wrap:balance;margin:0}
+h2{font-size:clamp(2.1rem,4.4vw,3.4rem)}
+h3{font-size:1.28rem;letter-spacing:-.01em}
+p{margin:0}
+em{font-style:italic}
+.g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.06em}
+.soft{background:linear-gradient(rgba(255,255,255,0),#FFF4F6 40%,rgba(255,255,255,0))}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+section{padding-block:clamp(72px,10vw,128px)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.76rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--rose)}
+.eyebrow::before{content:"";width:22px;height:2px;border-radius:2px;background:var(--grad)}
+.lede{color:var(--muted);font-size:1.12rem;max-width:56ch}
+.head{display:grid;gap:16px;margin-bottom:52px;max-width:740px}
+.head.center{margin-inline:auto;text-align:center;justify-items:center}
+.head.center .lede{margin-inline:auto}
+:focus-visible{outline:3px solid var(--lav);outline-offset:3px;border-radius:10px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:600 1rem var(--body);padding:15px 26px;border-radius:999px;border:0;cursor:pointer;text-decoration:none;transition:transform .25s,box-shadow .25s,background .25s,color .25s;white-space:nowrap}
+.btn-primary{background:var(--btn);color:#fff;box-shadow:0 12px 26px -12px rgba(160,80,150,.8)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 30px -12px rgba(160,80,150,.9)}
+.btn-ghost{background:rgba(255,255,255,.75);color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn-ghost:hover{box-shadow:inset 0 0 0 1.5px var(--rose);color:var(--rose)}
+.btn-light{background:#fff;color:var(--plum)}
+.btn-light:hover{transform:translateY(-2px)}
+.arrow{transition:transform .25s}.btn:hover .arrow,.more:hover .arrow{transform:translateX(4px)}
+.more{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--rose);text-decoration:none}
+
+/* Nav */
+.nav-shell{position:sticky;top:calc(env(safe-area-inset-top,0px) + 14px);z-index:50;padding-left:max(14px,env(safe-area-inset-left,0px));padding-right:max(14px,env(safe-area-inset-right,0px))}
+.nav{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 10px 10px 22px;border-radius:999px;background:rgba(255,255,255,.72);backdrop-filter:saturate(1.6) blur(18px);-webkit-backdrop-filter:saturate(1.6) blur(18px);box-shadow:0 0 0 1px rgba(240,226,231,.9),0 10px 30px -18px rgba(150,70,120,.4);position:relative}
+.logo img{height:38px;width:auto}
+.links{display:flex;gap:2px;list-style:none;margin:0;padding:0}
+.links a{display:block;padding:9px 15px;border-radius:999px;text-decoration:none;font-weight:500;color:var(--muted);font-size:.95rem;transition:all .2s}
+.links a:hover{color:var(--ink);background:var(--tint)}
+.nav-cta{display:flex;gap:8px;align-items:center}
+.nav .btn{padding:12px 22px;font-size:.94rem}
+.menu-btn{display:none;width:46px;height:46px;border-radius:50%;border:0;background:var(--tint);color:var(--ink);cursor:pointer;place-content:center}
+@media (max-width:1020px){
+  .links{display:none}.menu-btn{display:grid}
+  .links.open{display:grid;position:absolute;top:calc(100% + 10px);left:0;right:0;background:#fff;border-radius:28px;padding:14px;box-shadow:var(--shadow)}
+  .links.open a{font-size:1.08rem;padding:13px 16px}
+}
+@media (max-width:520px){.nav .btn{display:none}.logo img{height:32px}}
+
+/* Hero */
+.hero{padding-block:clamp(36px,6vw,72px) clamp(56px,8vw,96px)}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(36px,5vw,80px);align-items:center}
+.hero-copy{display:grid;gap:28px;min-width:0;animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+.pill-badge{justify-self:start;display:inline-flex;align-items:center;gap:10px;padding:8px 16px 8px 8px;border-radius:999px;background:rgba(255,255,255,.85);box-shadow:inset 0 0 0 1px var(--line);font-size:.86rem;font-weight:600;color:var(--ink)}
+.pill-badge span{padding:4px 10px;border-radius:999px;background:var(--grad);color:#fff;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+.hero h1{font-size:clamp(2.9rem,6.4vw,5.6rem);letter-spacing:-.035em;line-height:1}
+.hero h1 em{font-weight:400}
+.hero .lede{font-size:1.2rem}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.proof{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.faces{display:flex}
+.faces span{width:42px;height:42px;border-radius:50%;display:grid;place-content:center;font-size:.78rem;font-weight:700;border:3px solid #fff;margin-left:-10px}
+.faces span:first-child{margin-left:0}
+.proof-text{font-size:.92rem;color:var(--muted);line-height:1.4}
+.proof-text b{color:var(--ink);font-size:1rem}
+.stars{color:var(--gold);letter-spacing:2px}
+
+.visual{position:relative;min-width:0;padding:10px 26px 30px 30px;animation:rise 1s .15s cubic-bezier(.2,.8,.2,1) both}
+.arch{position:relative;border-radius:999px 999px 36px 36px;overflow:hidden;aspect-ratio:4/5;max-width:100%;background:var(--tint);box-shadow:var(--shadow)}
+.arch img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;transition:transform 1.4s cubic-bezier(.2,.8,.2,1)}
+.visual:hover .arch img{transform:scale(1.04)}
+.arch-ring{position:absolute;inset:-14px 12px 16px 16px;border-radius:999px 999px 44px 44px;border:1.5px dashed rgba(194,87,122,.35);z-index:-1}
+.chip{position:absolute;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:20px;padding:14px 16px;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;animation:bob 7s ease-in-out infinite;max-width:260px}
+.chip small{display:block;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rose);font-weight:700}
+.chip b{display:block;font:600 1.06rem/1.2 var(--display)}
+.chip .sub{font-size:.8rem;color:var(--muted)}
+.chip .ic{flex:none;width:42px;height:42px;border-radius:14px;display:grid;place-content:center}
+.c-week{left:0;top:36%;text-decoration:none;color:inherit}
+.c-week:hover{box-shadow:0 0 0 2px var(--rose),var(--shadow)}
+.c-rem{right:0;top:12%;animation-delay:-2.3s}
+.c-appt{right:6%;bottom:4px;animation-delay:-4.6s}
+.ring-mini{width:44px;height:44px;flex:none}
+@keyframes bob{50%{transform:translateY(-9px)}}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+/* Marquee */
+.marquee{border-block:1px solid var(--line);background:rgba(255,255,255,.6);overflow:hidden;padding-block:18px}
+.marquee-track{display:flex;gap:56px;width:max-content;animation:slide 38s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-item{display:flex;align-items:center;gap:12px;font-weight:600;color:var(--muted);white-space:nowrap;font-size:.98rem}
+.marquee-item svg{color:var(--rose)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* Journeys */
+.journeys{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.jcard{position:relative;display:grid;grid-template-rows:auto 1fr;background:var(--surface);border-radius:28px;overflow:hidden;text-decoration:none;box-shadow:var(--shadow-sm);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;min-width:0}
+.jcard:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.jimg{aspect-ratio:4/3.4;overflow:hidden;position:relative;max-width:100%}
+.jimg img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.jcard:hover .jimg img{transform:scale(1.06)}
+.jimg .stage{position:absolute;left:14px;top:14px;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.92);color:var(--ink)}
+.jart{width:100%;height:100%;display:grid;place-content:center;background:radial-gradient(circle at 30% 30%,#FFE3D3,transparent 60%),radial-gradient(circle at 75% 70%,#EADFFB,transparent 60%),#FCEBF1}
+.jbody{padding:22px 22px 24px;display:grid;gap:12px;align-content:start}
+.jbody p{color:var(--muted);font-size:.95rem}
+.jlist{list-style:none;padding:0;margin:4px 0 6px;display:flex;flex-wrap:wrap;gap:6px}
+.jlist li{font-size:.78rem;font-weight:600;padding:5px 10px;border-radius:999px;background:var(--cream);color:var(--muted)}
+.jbody .more{margin-top:auto}
+
+/* Steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative;counter-reset:s}
+.steps::before{content:"";position:absolute;top:31px;left:8%;right:8%;height:2px;background:repeating-linear-gradient(90deg,var(--line) 0 8px,transparent 8px 14px)}
+.step{position:relative;display:grid;gap:12px;justify-items:start}
+.step .num{width:64px;height:64px;border-radius:50%;display:grid;place-content:center;background:#fff;box-shadow:var(--shadow-sm),inset 0 0 0 1px var(--line);font:500 1.5rem var(--display);color:var(--rose)}
+.step:nth-child(2) .num{color:var(--lav)}.step:nth-child(3) .num{color:var(--peach)}.step:nth-child(4) .num{color:var(--leaf)}
+.step p{color:var(--muted);font-size:.96rem;max-width:30ch}
+
+/* Week explorer */
+.weekx{background:var(--surface);border-radius:40px;box-shadow:var(--shadow);padding:clamp(22px,4vw,52px);display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(24px,4vw,56px);align-items:center;position:relative;overflow:hidden}
+.weekx::before{content:"";position:absolute;width:520px;height:520px;left:-200px;top:-200px;border-radius:50%;background:radial-gradient(circle,#FBE6EC,transparent 65%);pointer-events:none}
+.dial-col{position:relative;display:grid;gap:18px;min-width:0}
+.dial{position:relative;width:100%;max-width:400px;margin:0 auto;aspect-ratio:1}
+.dial svg{width:100%;height:100%}
+.tick{stroke:#EEDFE5;stroke-width:3;stroke-linecap:round;transition:stroke .3s}
+.tick.on{stroke:url(#tg)}
+.tick.now{stroke:var(--peach);stroke-width:6}
+.womb{fill:url(#wg)}
+.baby{fill:url(#bg);transition:r .55s cubic-bezier(.3,1.5,.5,1)}
+.halo{fill:var(--rose);opacity:.1;transition:r .55s cubic-bezier(.3,1.5,.5,1)}
+.dial-center{position:absolute;inset:0;display:grid;place-content:center;text-align:center;pointer-events:none}
+.wk-label{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.wk-num{font:500 clamp(3.4rem,8vw,4.8rem)/1 var(--display);letter-spacing:-.04em;font-variant-numeric:tabular-nums;text-shadow:0 0 22px #fff,0 0 10px #fff}
+.slider-row{display:grid;gap:8px}
+.slider-ends{display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted);font-weight:600}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:30px;background:transparent;cursor:pointer;margin:0}
+input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:8px;background:linear-gradient(90deg,#C96A82,#9A6FC4 var(--p,50%),#F0E2E7 var(--p,50%))}
+input[type=range]::-moz-range-track{height:8px;border-radius:8px;background:#F0E2E7}
+input[type=range]::-moz-range-progress{height:8px;border-radius:8px;background:var(--rose)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;border-radius:50%;background:#fff;border:3px solid var(--rose);margin-top:-11px;box-shadow:0 6px 14px rgba(150,70,120,.3)}
+input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:#fff;border:3px solid var(--rose)}
+.info-col{display:grid;gap:22px;position:relative;min-width:0}
+.tri-chip{justify-self:start;font-size:.78rem;font-weight:700;padding:6px 14px;border-radius:999px;background:var(--lav-tint);color:var(--lav)}
+.fruit{font-size:clamp(1.9rem,3.6vw,2.7rem)}
+.fruit .hi{display:block;font-size:1rem;font-family:var(--body);color:var(--muted);font-style:normal;letter-spacing:0;margin-top:8px;font-weight:500}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{background:var(--cream);border-radius:18px;padding:14px 16px}
+.stat small{display:block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.stat b{font:500 1.5rem var(--display);font-variant-numeric:tabular-nums}
+.wnotes{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.wnote{border-radius:18px;padding:16px 18px;font-size:.94rem;line-height:1.5;border:1px solid var(--line);min-width:0}
+.wnote b{display:block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+.wnote.baby-n b{color:var(--rose)}.wnote.you-n b{color:var(--lav)}
+.due{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:.92rem;color:var(--muted);padding-top:18px;border-top:1px solid var(--line)}
+.due input{font:500 .92rem var(--body);color:var(--ink);background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:9px 12px}
+
+/* App preview */
+.app{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(24px,4vw,56px);align-items:center}
+.feat-col{display:grid;gap:18px}
+.feat{display:grid;grid-template-columns:auto 1fr;gap:16px;padding:20px;border-radius:22px;background:rgba(255,255,255,.75);box-shadow:inset 0 0 0 1px var(--line);transition:all .25s}
+.feat:hover{background:#fff;box-shadow:var(--shadow-sm)}
+.feat .ic{width:46px;height:46px;border-radius:14px;display:grid;place-content:center}
+.feat h3{font-size:1.1rem;margin-bottom:4px}
+.feat p{color:var(--muted);font-size:.93rem}
+.phone{width:310px;max-width:100%;border-radius:48px;padding:11px;background:var(--plum);box-shadow:0 40px 80px -30px rgba(80,30,60,.55),inset 0 0 0 2px #4A3540;position:relative}
+.screen{border-radius:38px;background:linear-gradient(#FFF7F5,#FFFFFF);padding:44px 16px 20px;display:grid;gap:12px;position:relative;overflow:hidden}
+.screen::before{content:"";position:absolute;top:12px;left:50%;transform:translateX(-50%);width:92px;height:24px;border-radius:20px;background:var(--plum)}
+.s-head{display:flex;justify-content:space-between;align-items:center}
+.s-head small{font-size:.72rem;color:var(--muted)}
+.s-head b{display:block;font:600 1.12rem var(--display)}
+.s-av{width:36px;height:36px;border-radius:50%;background:var(--tint);color:var(--rose);display:grid;place-content:center;font-size:.72rem;font-weight:700}
+.s-card{border-radius:20px;padding:14px;background:#fff;box-shadow:0 1px 0 var(--line),0 6px 16px -10px rgba(150,70,120,.3)}
+.s-week{background:var(--grad);color:#fff;display:flex;justify-content:space-between;align-items:center}
+.s-week small{opacity:.85;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+.s-week b{display:block;font:500 1.5rem var(--display)}
+.s-week span{font-size:.78rem;opacity:.9}
+.s-row{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.84rem}
+.s-title{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:8px}
+.glasses{display:flex;gap:5px}
+.glasses i{flex:1;height:22px;border-radius:5px 5px 8px 8px;background:#EEE6EA;cursor:pointer;transition:background .2s}
+.glasses i.f{background:linear-gradient(#B9A3E6,#9A6FC4)}
+.pill-row{display:flex;align-items:center;gap:10px;padding:6px 0;font-size:.84rem;cursor:pointer}
+.pill-row .box{width:20px;height:20px;border-radius:7px;border:2px solid #E2D2DA;display:grid;place-content:center;flex:none;transition:all .2s}
+.pill-row.done .box{background:var(--leaf);border-color:var(--leaf)}
+.pill-row.done .box::after{content:"";width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.pill-row.done span{color:var(--muted);text-decoration:line-through}
+.pill-row em{margin-left:auto;font-style:normal;font-size:.74rem;color:var(--muted)}
+.s-appt{display:flex;gap:12px;align-items:center}
+.s-date{flex:none;width:46px;border-radius:12px;background:var(--peach-tint);text-align:center;padding:6px 0;line-height:1.1}
+.s-date b{display:block;font:600 1.15rem var(--display);color:var(--peach)}
+.s-date small{font-size:.62rem;font-weight:700;color:var(--peach);letter-spacing:.08em}
+.s-appt div:last-child{font-size:.82rem;line-height:1.35}
+.s-appt strong{display:block;font-size:.88rem}
+.kick{font:600 .82rem var(--body);border:0;border-radius:999px;padding:8px 14px;background:var(--tint);color:var(--rose);cursor:pointer}
+.kick:active{transform:scale(.95)}
+
+/* Services bento */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.tile{background:var(--surface);border-radius:var(--r);padding:26px;display:grid;gap:10px;align-content:start;box-shadow:var(--shadow-sm);text-decoration:none;transition:transform .3s,box-shadow .3s;min-width:0;position:relative;overflow:hidden}
+.tile:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.tile p{color:var(--muted);font-size:.94rem}
+.tile .ic{width:48px;height:48px;border-radius:15px;display:grid;place-content:center;margin-bottom:4px}
+.t-doc{grid-column:span 3;grid-row:span 3;background:linear-gradient(160deg,#FCEBF1,#F2ECFB);box-shadow:none;display:flex;flex-direction:column;gap:10px}
+.t-doc .mini-doc{margin-top:auto!important}
+.t-doc h3,.t-lab h3{font-size:1.7rem}
+.specs{display:flex;flex-wrap:wrap;gap:6px}
+.specs span{font-size:.78rem;font-weight:600;padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.7);color:var(--muted)}
+.days{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:14px}
+.day{border:0;border-radius:16px;background:rgba(255,255,255,.7);padding:10px 0;cursor:pointer;display:grid;gap:2px;font:600 .72rem var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);transition:all .2s}
+.day b{font:500 1.3rem var(--display);letter-spacing:0;color:var(--ink);text-transform:none}
+.day:hover{background:#fff}
+.day.sel{background:var(--ink);color:rgba(255,255,255,.7)}.day.sel b{color:#fff}
+.slots{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.test-cta{background:linear-gradient(140deg,#FCE3EA,#EDE3FA);border-radius:24px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;gap:18px}
+.test-cta h3{font-size:1.5rem}
+.slot{font:600 .84rem var(--body);padding:9px 14px;border-radius:12px;background:#fff;border:0;color:var(--ink);cursor:pointer;box-shadow:var(--shadow-sm);transition:all .2s}
+.slot:hover,.slot.sel{background:var(--rose);color:#fff}
+.mini-doc{margin-top:auto;display:flex;align-items:center;gap:12px;background:#fff;border-radius:18px;padding:12px 14px;box-shadow:var(--shadow-sm)}
+.mini-doc .av{width:44px;height:44px;border-radius:50%;overflow:hidden;flex:none}
+.mini-doc .av img{width:100%;height:100%;object-fit:cover;object-position:70% 20%}
+.mini-doc b{display:block;font-size:.95rem}.mini-doc span{font-size:.82rem;color:var(--muted)}
+.t-lab{grid-column:span 3;background:var(--plum);color:#fff;box-shadow:none}
+.t-lab p{color:rgba(255,255,255,.72)}
+.t-lab .ic{background:rgba(255,255,255,.1);color:#F5B8CB}
+.report{margin-top:6px;display:grid;gap:8px;font-size:.86rem}
+.rep-row{display:grid;grid-template-columns:1fr auto 70px;gap:10px;align-items:center}
+.rep-bar{height:6px;border-radius:6px;background:rgba(255,255,255,.12);overflow:hidden}
+.rep-bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,#9FD6B5,#5FB287)}
+.rep-row .ok{font-size:.74rem;color:#9FD6B5;font-weight:700;text-align:right}
+.t-sm{grid-column:span 1}
+.t-md{grid-column:span 2}
+.t3{grid-column:span 3}
+
+/* Trimester guide */
+.tabs{display:inline-flex;flex-wrap:wrap;gap:6px;padding:6px;border-radius:999px;background:#fff;box-shadow:var(--shadow-sm);margin-bottom:28px;max-width:100%}
+.tab{font:600 .94rem var(--body);padding:11px 20px;border-radius:999px;border:0;cursor:pointer;background:transparent;color:var(--muted);transition:all .25s}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--btn);color:#fff;box-shadow:0 8px 18px -10px rgba(160,80,150,.8)}
+.guide{display:grid;grid-template-columns:1.45fr 1fr;gap:18px}
+.gpanel{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;min-width:0}
+.gitem{background:#fff;border-radius:20px;padding:20px 22px;box-shadow:var(--shadow-sm);display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;min-width:0}
+.gitem .ic{width:38px;height:38px;border-radius:12px;display:grid;place-content:center}
+.gitem b{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.gitem p{font-size:.95rem}
+.check{background:var(--plum);color:#fff;border-radius:28px;padding:28px;display:grid;gap:16px;align-content:start;position:relative;overflow:hidden}
+.check::after{content:"";position:absolute;right:-80px;bottom:-80px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(201,106,130,.45),transparent 70%)}
+.check h3{font-size:1.5rem}
+.prog{display:flex;align-items:center;gap:12px;font-size:.88rem;color:rgba(255,255,255,.72);font-variant-numeric:tabular-nums}
+.bar{flex:1;height:7px;border-radius:7px;background:rgba(255,255,255,.12);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--grad);transition:width .45s}
+.check ul{list-style:none;padding:0;margin:0;display:grid;gap:4px;position:relative;z-index:1}
+.check label{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border-radius:14px;cursor:pointer;transition:background .2s;font-size:.96rem}
+.check label:hover{background:rgba(255,255,255,.06)}
+.check input{appearance:none;-webkit-appearance:none;flex:none;width:22px;height:22px;border-radius:8px;border:2px solid rgba(255,255,255,.35);margin:1px 0 0;display:grid;place-content:center;cursor:pointer;transition:all .2s}
+.check input:checked{background:var(--peach);border-color:var(--peach)}
+.check input:checked::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.check input:checked+span{opacity:.5;text-decoration:line-through}
+.note-sm{font-size:.86rem;color:var(--muted);margin-top:20px}
+.fade{animation:fade .45s ease}
+@keyframes fade{from{opacity:.25;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* Doctors */
+.docs-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(24px,4vw,56px);align-items:stretch}
+.doc-photo{position:relative;border-radius:32px;overflow:hidden;min-height:420px;box-shadow:var(--shadow)}
+.doc-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.doc-photo .cap{position:absolute;left:18px;right:18px;bottom:18px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:20px;padding:16px 18px;display:grid;gap:2px}
+.doc-photo .cap b{font:600 1.1rem var(--display)}
+.doc-photo .cap span{font-size:.88rem;color:var(--muted)}
+.doc-list{display:grid;gap:14px;align-content:start}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+.fchip{font:600 .86rem var(--body);padding:9px 16px;border-radius:999px;border:0;background:#fff;color:var(--muted);box-shadow:inset 0 0 0 1px var(--line);cursor:pointer;transition:all .2s}
+.fchip[aria-pressed="true"]{background:var(--ink);color:#fff;box-shadow:none}
+.doc{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;background:#fff;border-radius:22px;padding:18px 20px;box-shadow:var(--shadow-sm);transition:transform .25s,box-shadow .25s}
+.doc:hover{transform:translateX(4px);box-shadow:var(--shadow)}
+.avatar{width:58px;height:58px;border-radius:50%;display:grid;place-content:center;font:600 1.05rem var(--display);flex:none;position:relative}
+.avatar::after{content:"";position:absolute;right:1px;bottom:1px;width:13px;height:13px;border-radius:50%;background:var(--leaf);border:2.5px solid #fff}
+.doc h3{font-size:1.1rem}
+.doc .meta{font-size:.88rem;color:var(--muted)}
+.doc .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.tag{font-size:.74rem;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--cream);color:var(--muted)}
+.doc-right{display:grid;gap:8px;justify-items:end}
+.rating{font-weight:700;font-size:.9rem;display:flex;gap:4px;align-items:center}
+.rating::before{content:"★";color:var(--gold)}
+.sbtn{font:600 .86rem var(--body);padding:10px 16px;border-radius:999px;border:0;cursor:pointer;background:var(--tint);color:var(--rose);transition:all .2s;white-space:nowrap}
+.sbtn:hover{background:var(--rose);color:#fff}
+
+/* Tests */
+.tests{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.test{background:#fff;border-radius:24px;padding:24px;box-shadow:var(--shadow-sm);display:grid;gap:14px;align-content:start;transition:transform .3s,box-shadow .3s}
+.test:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.test-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.where{display:inline-flex;align-items:center;gap:7px;font-size:.76rem;font-weight:700;padding:5px 11px;border-radius:999px;background:var(--leaf-tint);color:var(--leaf);white-space:nowrap}
+.where::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.where.centre{background:var(--peach-tint);color:#B5622F}
+.when{font-size:.84rem;color:var(--lav);font-weight:600}
+.test ul{list-style:none;padding:0;margin:0;display:grid;gap:6px;font-size:.9rem}
+.test li{display:flex;gap:10px;align-items:baseline}
+.test li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--rose);transform:translateY(-2px)}
+.test li.more-t{color:var(--muted)}
+.test li.more-t::before{background:var(--line)}
+.test-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;padding-top:14px;border-top:1px dashed var(--line);margin-top:auto}
+.price small{display:block;font-size:.7rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+.price b{font:500 1.6rem var(--display);font-variant-numeric:tabular-nums}
+.tat{font-size:.8rem;color:var(--muted)}
+
+/* Nutrition */
+.nutri{display:grid;grid-template-columns:.95fr 1.25fr;gap:clamp(28px,5vw,64px);align-items:center}
+.nutri-vis{position:relative;display:grid;grid-template-columns:.62fr 1fr;align-items:center;min-width:0}
+.food-photo{grid-column:1;grid-row:1;border-radius:999px 999px 32px 32px;overflow:hidden;aspect-ratio:3/4.2;max-width:100%;box-shadow:var(--shadow)}
+.food-photo img{width:100%;height:100%;object-fit:cover}
+.plate{grid-column:1/3;grid-row:1;margin-left:30%;background:#fff;border-radius:28px;padding:24px;box-shadow:var(--shadow);display:grid;gap:2px;position:relative;min-width:0}
+.plate-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.plate-head h3{font-size:1.2rem}
+.meal{display:grid;grid-template-columns:1fr auto;gap:2px 12px;align-items:center;padding:11px 0;border-bottom:1px dashed var(--line);font-size:.93rem}
+.meal .t{grid-column:1/-1}
+.meal:last-child{border-bottom:0}
+.meal .t{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.meal .w{font-weight:500;min-width:0}
+.meal .why{font-size:.72rem;font-weight:700;padding:4px 9px;border-radius:999px;background:var(--peach-tint);color:#B5622F;white-space:nowrap}
+.nlist{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.nlist li{display:flex;gap:10px;align-items:center;font-weight:500;font-size:.96rem}
+.nlist svg{flex:none;color:var(--leaf)}
+
+/* Community */
+.community{background:var(--plum);color:#fff;border-radius:44px;padding:clamp(24px,4vw,48px);display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,4vw,64px);align-items:center;position:relative;overflow:hidden}
+.community::before{content:"";position:absolute;width:600px;height:600px;right:-200px;top:-260px;border-radius:50%;background:radial-gradient(circle,rgba(154,111,196,.45),transparent 65%)}
+.comm-photo{border-radius:32px;overflow:hidden;aspect-ratio:1/1.05;max-width:100%;position:relative}
+.comm-photo img{width:100%;height:100%;object-fit:cover}
+.comm-body{display:grid;gap:22px;position:relative;min-width:0}
+.comm-body .eyebrow{color:#F5B8CB}
+.comm-body .lede{color:rgba(255,255,255,.72)}
+.perks{display:flex;flex-wrap:wrap;gap:8px}
+.perks span{font-size:.84rem;font-weight:600;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.quote-card{background:rgba(255,255,255,.06);border-radius:24px;padding:24px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);display:grid;gap:16px}
+.quote{font:400 clamp(1.15rem,2vw,1.4rem)/1.45 var(--display);font-style:italic;min-height:4.4em}
+.who{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.who-l{display:flex;align-items:center;gap:12px}
+.who .av2{width:44px;height:44px;border-radius:50%;display:grid;place-content:center;font-size:.85rem;font-weight:700;background:rgba(255,255,255,.12)}
+.who small{display:block;color:rgba(255,255,255,.6);font-size:.82rem}
+.q-nav{display:flex;gap:6px}
+.q-dot{width:28px;height:6px;border-radius:6px;border:0;background:rgba(255,255,255,.2);cursor:pointer;padding:0;transition:all .3s}
+.q-dot[aria-current="true"]{background:#F5B8CB;width:44px}
+.sample{font-size:.76rem;color:rgba(255,255,255,.45)}
+
+/* Shop */
+.shop{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.prod{display:grid;gap:12px;text-decoration:none;min-width:0}
+.prod-art{aspect-ratio:1;max-width:100%;border-radius:24px;display:grid;place-content:center;position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.prod:hover .prod-art{transform:translateY(-4px)}
+.prod-art svg{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.prod:hover .prod-art svg{transform:scale(1.08) rotate(-3deg)}
+.prod-art .for{position:absolute;top:12px;left:12px;font-size:.72rem;font-weight:700;padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.9)}
+.prod-art .add{position:absolute;right:12px;bottom:12px;width:40px;height:40px;border-radius:50%;background:#fff;display:grid;place-content:center;box-shadow:var(--shadow-sm);color:var(--rose);font-size:1.3rem;opacity:0;transform:translateY(6px);transition:all .3s}
+.prod:hover .add{opacity:1;transform:none}
+.prod-row{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.prod h3{font-size:1.04rem;font-family:var(--body);font-weight:600;letter-spacing:0}
+.prod p{color:var(--muted);font-size:.88rem}
+.prod .pp{font:500 1.1rem var(--display);white-space:nowrap}
+.prod .rt{font-size:.8rem;color:var(--muted)}
+
+/* Why + trust */
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow-sm)}
+.why-item{background:#fff;padding:30px;display:grid;gap:10px;align-content:start}
+.why-item .ic{width:46px;height:46px;border-radius:14px;display:grid;place-content:center;margin-bottom:6px}
+.why-item p{color:var(--muted);font-size:.95rem}
+.safety{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px 26px;justify-content:center;padding:20px 24px;border-radius:999px;background:var(--leaf-tint);color:var(--leaf);font-weight:600;font-size:.92rem}
+.safety span{display:flex;align-items:center;gap:8px}
+
+/* Partner */
+.partner{position:relative;overflow:hidden;border-radius:40px;padding:clamp(32px,5vw,64px);background:linear-gradient(120deg,#FCE3EA,#EDE3FA 60%,#FFE8DB);display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap}
+.partner h2{font-size:clamp(1.8rem,3.2vw,2.6rem)}
+.partner .lede{margin-top:10px}
+
+/* FAQ */
+.faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(28px,5vw,80px)}
+.faq-list{display:grid;gap:10px}
+details{background:#fff;border-radius:20px;box-shadow:var(--shadow-sm);transition:box-shadow .25s}
+details[open]{box-shadow:var(--shadow)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;align-items:center;padding:20px 24px;font:500 1.12rem var(--display)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-content:center;background:var(--tint);color:var(--rose);font:400 1.4rem/1 var(--body);transition:transform .3s,background .3s}
+details[open] summary::after{transform:rotate(45deg);background:var(--rose);color:#fff}
+details p{padding:0 24px 22px;color:var(--muted);max-width:64ch}
+
+/* Final CTA */
+.final{position:relative;border-radius:44px;overflow:hidden;min-height:440px;display:grid;align-items:end;box-shadow:var(--shadow)}
+.final img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%}
+.final::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(46,33,40,.85),rgba(46,33,40,.45) 55%,rgba(46,33,40,.05))}
+.final-body{position:relative;z-index:2;padding:clamp(28px,5vw,64px);display:grid;gap:20px;max-width:620px;color:#fff}
+.final h2{font-size:clamp(2.3rem,5vw,4rem)}
+.final p{color:rgba(255,255,255,.82);font-size:1.1rem}
+
+/* Footer */
+footer{padding-block:64px 40px;color:var(--muted);font-size:.93rem}
+.foot{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:36px}
+.foot h4{font:700 .74rem var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--ink);margin:0 0 14px}
+.foot ul{list-style:none;padding:0;margin:0;display:grid;gap:9px}
+.foot a{text-decoration:none}.foot a:hover{color:var(--rose)}
+.news{display:flex;gap:8px;margin-top:6px;max-width:380px}
+.news input{flex:1;min-width:0;font:500 .94rem var(--body);padding:12px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink)}
+.news .btn{padding:12px 18px;font-size:.9rem}
+.fine{margin-top:48px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.84rem}
+
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--plum);color:#fff;padding:13px 22px;border-radius:999px;font-weight:500;font-size:.94rem;opacity:0;pointer-events:none;transition:all .35s;z-index:70;max-width:calc(100% - 32px);box-shadow:var(--shadow)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* Responsive */
+@media (max-width:1100px){
+  .journeys{grid-template-columns:1fr 1fr}
+  .app{grid-template-columns:1fr 1fr}.app .phone-wrap{grid-column:1/-1;grid-row:1;justify-self:center}
+  .shop{grid-template-columns:repeat(3,1fr)}
+  .bento{grid-template-columns:repeat(4,1fr)}
+  .t-doc,.t-lab{grid-column:span 4}.t-doc{grid-row:auto}.t-sm{grid-column:span 2}.t-md{grid-column:span 2}.t3{grid-column:span 2}
+}
+@media (max-width:920px){
+  .hero-grid,.weekx,.guide,.docs-wrap,.nutri,.community,.faq{grid-template-columns:1fr}
+  .visual{max-width:520px;margin:0 auto;width:100%}
+  .steps{grid-template-columns:1fr 1fr;row-gap:36px}.steps::before{display:none}
+  .tests{grid-template-columns:1fr 1fr}
+  .why{grid-template-columns:1fr 1fr}
+  .foot{grid-template-columns:1fr 1fr}
+  .doc-photo{min-height:340px}
+  .safety{border-radius:28px}
+}
+@media (max-width:620px){
+  body{font-size:16px}
+  .journeys,.tests,.why,.gpanel,.wnotes,.app,.nlist,.steps{grid-template-columns:1fr}
+  .shop{grid-template-columns:1fr 1fr;gap:12px}
+  .prod-row{flex-direction:column;gap:2px}.prod h3{font-size:.96rem}
+  .bento{grid-template-columns:1fr}.bento>*{grid-column:auto!important}
+  .stats{gap:6px}.stat{padding:12px}.stat b{font-size:1.2rem}
+  .visual{padding:8px 4px 26px 4px}
+  .chip{padding:10px 12px;gap:10px;max-width:210px}.chip .ic,.ring-mini{width:34px;height:34px}.chip b{font-size:.94rem}
+  .c-week{left:-2px;top:auto;bottom:24%}.c-rem{right:-2px;top:6%}.c-appt{display:none}
+  .doc{grid-template-columns:auto 1fr}.doc-right{grid-column:1/-1;grid-auto-flow:column;justify-content:space-between;align-items:center}
+  .nutri-vis{grid-template-columns:1fr}
+  .food-photo{aspect-ratio:16/11;border-radius:32px}
+  .plate{grid-column:1;grid-row:2;margin:-56px 10px 0}
+  .foot{grid-template-columns:1fr}
+  .final{min-height:520px}.final::before{background:linear-gradient(0deg,rgba(46,33,40,.9),rgba(46,33,40,.35) 70%,rgba(46,33,40,.1))}
+  .tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{padding:9px 15px;font-size:.88rem;flex:none}
+  .quote{min-height:0}
+}
+</style>
+
+<div class="nav-shell">
+  <nav class="nav" aria-label="Main">
+    <a href="#top" class="logo" aria-label="Garbhini home"><img src="img/logo.png" alt="Garbhini" width="1514" height="459"></a>
+    <ul class="links" id="links">
+      <li><a href="#journeys">Journeys</a></li>
+      <li><a href="#week">Week by week</a></li>
+      <li><a href="#doctors">Doctors</a></li>
+      <li><a href="#tests">Labs &amp; scans</a></li>
+      <li><a href="#nutrition">Nutrition</a></li>
+      <li><a href="#shop">Shop</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#doctors" class="btn btn-primary">Book appointment</a>
+      <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="links">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
+      </button>
+    </div>
+  </nav>
+</div>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="pill-badge"><span>New</span>Week-by-week tracker for all 40 weeks</span>
+      <h1>Your journey to <em class="g">motherhood</em>, supported every step.</h1>
+      <p class="lede">Trusted doctors, lab tests, scans, nutrition and daily guidance for trying to conceive, pregnancy and life with your newborn. All in one calm place.</p>
+      <div class="ctas">
+        <a href="#journeys" class="btn btn-primary">Start your journey <span class="arrow">→</span></a>
+        <a href="#week" class="btn btn-ghost">See your baby this week</a>
+      </div>
+      <div class="proof">
+        <div class="faces" aria-hidden="true">
+          <span style="background:#FCE3EA;color:#C2577A">AD</span><span style="background:#EDE3FA;color:#7E57B0">NG</span><span style="background:#FFE8DB;color:#B5622F">FS</span><span style="background:#E3F1E8;color:#4F8F6E">PK</span>
+        </div>
+        <div class="proof-text"><span class="stars">★★★★★</span> <b>4.9 / 5</b><br>Loved by mothers across India</div>
+      </div>
+    </div>
+
+    <div class="visual">
+      <div class="arch-ring" aria-hidden="true"></div>
+      <div class="arch"><img src="img/hero.jpg" alt="Happy pregnant Indian mother cradling her baby bump" width="1100" height="1650" fetchpriority="high"></div>
+      <div class="chip c-rem">
+        <span class="ic" style="background:var(--leaf-tint);color:var(--leaf)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span>
+        <div><small>Reminder</small><b>Iron tablet taken</b><span class="sub">Today, 9:00 AM</span></div>
+      </div>
+      <a href="#week" class="chip c-week">
+        <svg class="ring-mini" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="18" fill="none" stroke="#F0E2E7" stroke-width="5"/><circle cx="22" cy="22" r="18" fill="none" stroke="url(#mini)" stroke-width="5" stroke-linecap="round" stroke-dasharray="113" stroke-dashoffset="45" transform="rotate(-90 22 22)"/><defs><linearGradient id="mini"><stop offset="0" stop-color="#C96A82"/><stop offset="1" stop-color="#9A6FC4"/></linearGradient></defs></svg>
+        <div><small>Baby this week</small><b>Week 24</b><span class="sub">Size of a bhutta</span></div>
+      </a>
+      <div class="chip c-appt">
+        <span class="ic" style="background:var(--peach-tint);color:var(--peach)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
+        <div><small>Next visit</small><b>Anomaly scan</b><span class="sub">Thu, 11:30 AM</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-label="What Garbhini offers">
+  <div class="marquee-track" id="marquee"></div>
+</div>
+
+<!-- JOURNEYS -->
+<section id="journeys">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Choose your journey</span>
+      <h2>Where are you in your <em class="g">journey</em>?</h2>
+      <p class="lede">Garbhini meets you exactly where you are, with care shaped around your stage of motherhood.</p>
+    </div>
+    <div class="journeys" id="journey-cards"></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="head center">
+      <span class="eyebrow">How Garbhini works</span>
+      <h2>Care in four simple steps.</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="num">1</span><h3>Choose your journey</h3><p>Trying to conceive, pregnant, a new mother or general gynaecology.</p></div>
+      <div class="step"><span class="num">2</span><h3>Tell us about you</h3><p>A short profile with your due date, health history and preferences.</p></div>
+      <div class="step"><span class="num">3</span><h3>Get personal care</h3><p>Guidance, doctors and tests that fit your stage, nothing extra.</p></div>
+      <div class="step"><span class="num">4</span><h3>Track every milestone</h3><p>Appointments, nutrition, reminders and reports in one place.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WEEK EXPLORER -->
+<section id="week" style="padding-top:0">
+  <div class="wrap">
+    <div class="head center">
+      <span class="eyebrow">Pregnancy week by week</span>
+      <h2>Watch your baby <em class="g">grow</em>, week by week.</h2>
+      <p class="lede">Slide through all 40 weeks. See your baby's real size next to something from an Indian kitchen, and what to expect for you.</p>
+    </div>
+    <div class="weekx">
+      <div class="dial-col">
+        <div class="dial">
+          <svg viewBox="0 0 400 400" aria-hidden="true">
+            <defs>
+              <radialGradient id="wg" cx="50%" cy="45%" r="60%"><stop offset="0" stop-color="#FFF4F7"/><stop offset="1" stop-color="#F7E4EC"/></radialGradient>
+              <radialGradient id="bg" cx="38%" cy="35%" r="70%"><stop offset="0" stop-color="#F1A7BC"/><stop offset=".6" stop-color="#C96A82"/><stop offset="1" stop-color="#9A6FC4"/></radialGradient>
+              <linearGradient id="tg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C96A82"/><stop offset="1" stop-color="#9A6FC4"/></linearGradient>
+            </defs>
+            <circle class="womb" cx="200" cy="200" r="152"/>
+            <circle class="halo" id="halo" cx="200" cy="200" r="60"/>
+            <circle class="baby" id="baby" cx="200" cy="200" r="40"/>
+            <g id="ticks"></g>
+          </svg>
+          <div class="dial-center"><span class="wk-label">Week</span><span class="wk-num" id="wk-num">24</span></div>
+        </div>
+        <div class="slider-row">
+          <label for="week-range" class="wk-label" style="text-align:center">Slide to any week</label>
+          <input type="range" id="week-range" min="4" max="40" value="24">
+          <div class="slider-ends"><span>Week 4</span><span>Week 20</span><span>Week 40</span></div>
+        </div>
+      </div>
+      <div class="info-col">
+        <span class="tri-chip" id="tri-chip">2nd trimester</span>
+        <h3 class="fruit" id="fruit">About the size of an ear of corn</h3>
+        <div class="stats">
+          <div class="stat"><small>Length</small><b id="len">30 cm</b></div>
+          <div class="stat"><small>Weight</small><b id="wt">600 g</b></div>
+          <div class="stat"><small>To go</small><b id="left">16 wks</b></div>
+        </div>
+        <div class="wnotes">
+          <div class="wnote baby-n"><b>Your baby</b><span id="n-baby"></span></div>
+          <div class="wnote you-n"><b>For you</b><span id="n-you"></span></div>
+        </div>
+        <div class="due">
+          <label for="due-date">Know your due date? Jump to your week:</label>
+          <input type="date" id="due-date">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APP PREVIEW -->
+<section class="soft" style="padding-top:0">
+  <div class="wrap">
+    <div class="head center">
+      <span class="eyebrow">Your day, organised</span>
+      <h2>Everything for today, on <em class="g">one screen</em>.</h2>
+      <p class="lede">Water, supplements, kick counts and your next visit. Try it, the screen below works.</p>
+    </div>
+    <div class="app">
+      <div class="feat-col">
+        <div class="feat"><span class="ic" style="background:var(--lav-tint);color:var(--lav)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11z"/></svg></span><div><h3>Daily tracking</h3><p>Water, meals, supplements and weight, logged in a tap.</p></div></div>
+        <div class="feat"><span class="ic" style="background:var(--tint);color:var(--rose)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></span><div><h3>Gentle reminders</h3><p>Folic acid, iron, calcium and appointments, on time.</p></div></div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone" aria-label="Garbhini app preview">
+          <div class="screen">
+            <div class="s-head"><div><small>Good morning</small><b>Aditi</b></div><span class="s-av">AD</span></div>
+            <div class="s-card s-week"><div><small>Week 24 · 2nd trimester</small><b>Size of a bhutta</b><span>30 cm · 600 g</span></div>
+              <svg width="54" height="54" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-dasharray="113" stroke-dashoffset="45" transform="rotate(-90 22 22)"/><text x="22" y="26" text-anchor="middle" fill="#fff" font-size="10" font-weight="700" font-family="Plus Jakarta Sans,sans-serif">60%</text></svg>
+            </div>
+            <div class="s-card">
+              <div class="s-row" style="margin-bottom:8px"><span class="s-title" style="margin:0">Water</span><b id="water-count" style="font-size:.84rem">5 of 8 glasses</b></div>
+              <div class="glasses" id="glasses" role="group" aria-label="Glasses of water"></div>
+            </div>
+            <div class="s-card">
+              <div class="s-title">Supplements</div>
+              <div class="pill-row done" role="checkbox" aria-checked="true" tabindex="0"><span class="box"></span><span>Folic acid</span><em>8:00</em></div>
+              <div class="pill-row" role="checkbox" aria-checked="false" tabindex="0"><span class="box"></span><span>Iron + Vitamin C</span><em>13:00</em></div>
+              <div class="pill-row" role="checkbox" aria-checked="false" tabindex="0"><span class="box"></span><span>Calcium</span><em>21:00</em></div>
+            </div>
+            <div class="s-card s-row"><div><div class="s-title" style="margin-bottom:2px">Kick count</div><b id="kicks" style="font:600 1.3rem var(--display)">6</b> <span style="font-size:.78rem;color:var(--muted)">today</span></div><button class="kick" id="kick-btn">+ Log a kick</button></div>
+            <div class="s-card s-appt"><div class="s-date"><small>THU</small><b>14</b></div><div><strong>Anomaly scan</strong>11:30 AM · Sonography centre</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="feat-col">
+        <div class="feat"><span class="ic" style="background:var(--peach-tint);color:var(--peach)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><h3>Kick tracking</h3><p>Count movements in the third trimester and see the pattern.</p></div></div>
+        <div class="feat"><span class="ic" style="background:var(--leaf-tint);color:var(--leaf)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M8 7h6M8 11h6"/></svg></span><div><h3>Pregnancy education</h3><p>Short, doctor-reviewed reads for every week.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="care">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Our services</span>
+      <h2>Everything you need, <em class="g">beautifully</em> connected.</h2>
+      <p class="lede">A complete set of maternal healthcare services, so you spend less time running around and more time resting.</p>
+    </div>
+    <div class="bento">
+      <div class="tile t-doc">
+        <span class="ic" style="background:#fff;color:var(--rose)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 3v6a5 5 0 0 0 10 0V3"/><path d="M11 14v2a5 5 0 0 0 10 0v-3"/><circle cx="21" cy="11" r="2"/></svg></span>
+        <h3>Doctor appointments</h3>
+        <p>Gynaecologists, fertility and lactation specialists. In the clinic or on video.</p>
+        <div class="specs"><span>Obstetrics</span><span>Fertility</span><span>High-risk pregnancy</span><span>Lactation</span><span>PCOS &amp; thyroid</span></div>
+        <div class="days" id="days"></div>
+        <div class="slots" id="slots"><button class="slot">10:00 AM</button><button class="slot sel">11:30 AM</button><button class="slot">2:00 PM</button><button class="slot">4:30 PM</button><button class="slot">Video · 6 PM</button></div>
+        <div class="mini-doc" style="margin-top:18px"><span class="av"><img src="img/community.jpg" alt="" width="1100" height="894" loading="lazy"></span><div><b>Dr. Meera Kulkarni</b><span>Gynecology · Pune · 11 yrs</span></div><span class="rating" style="margin-left:auto">4.8</span></div>
+      </div>
+      <div class="tile t-lab">
+        <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M7 15h10"/></svg></span>
+        <h3>Lab tests at home</h3>
+        <p>Samples collected from your home. Reports arrive on your phone, explained simply.</p>
+        <div class="report" aria-label="Sample report">
+          <div class="rep-row"><span>Haemoglobin</span><span class="rep-bar" style="width:90px"><i style="width:72%"></i></span><span class="ok">Normal</span></div>
+          <div class="rep-row"><span>TSH (thyroid)</span><span class="rep-bar" style="width:90px"><i style="width:58%"></i></span><span class="ok">Normal</span></div>
+          <div class="rep-row"><span>Blood sugar</span><span class="rep-bar" style="width:90px"><i style="width:64%"></i></span><span class="ok">Normal</span></div>
+        </div>
+      </div>
+      <a href="#tests" class="tile t-md"><span class="ic" style="background:var(--lav-tint);color:var(--lav)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0"/></svg></span><h3>Sonography &amp; scans</h3><p>Dating, NT, anomaly and growth scans.</p></a>
+      <a href="#nutrition" class="tile t-sm"><span class="ic" style="background:var(--peach-tint);color:var(--peach)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18a9 9 0 0 1-18 0Z"/><path d="M12 8c0-3 2-5 5-5"/></svg></span><h3>Nutrition</h3><p>Trimester meal plans.</p></a>
+      <a href="#guide" class="tile t-md"><span class="ic" style="background:var(--leaf-tint);color:var(--leaf)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="2"/><path d="M12 7v6l-4 8M12 13l4 8M6 11h12"/></svg></span><h3>Pregnancy exercise</h3><p>Safe yoga and workouts for your stage.</p></a>
+      <a href="#guide" class="tile t-sm"><span class="ic" style="background:var(--tint);color:var(--rose)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M8 7h6M8 11h6"/></svg></span><h3>Education</h3><p>Week-by-week reads.</p></a>
+      <a href="#community" class="tile t3"><span class="ic" style="background:var(--lav-tint);color:var(--lav)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M15 14.5c3 0 6 1.8 6 5.5"/></svg></span><h3>Community</h3><p>Groups by due month, city and language.</p></a>
+      <a href="#shop" class="tile t3"><span class="ic" style="background:var(--peach-tint);color:var(--peach)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 8h14l-1 12H6z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg></span><h3>Mama &amp; baby products</h3><p>Carefully chosen essentials for both of you.</p></a>
+    </div>
+  </div>
+</section>
+
+<!-- TRIMESTER GUIDE -->
+<section id="guide" class="soft" style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Pregnancy care</span>
+      <h2>Designed around <em class="g">every trimester</em>.</h2>
+      <p class="lede">What to eat, which tests to take and what to do, stage by stage. Tick things off as you go.</p>
+    </div>
+    <div class="tabs" role="tablist" id="t-tabs"></div>
+    <div class="guide">
+      <div class="gpanel" id="gpanel" role="tabpanel"></div>
+      <div class="check">
+        <h3 id="check-title">1st trimester checklist</h3>
+        <div class="prog"><span id="check-count">0 of 5 done</span><div class="bar"><i id="check-bar"></i></div></div>
+        <ul id="check-list"></ul>
+      </div>
+    </div>
+    <p class="note-sm">Information on Garbhini is for education and does not replace professional medical advice.</p>
+  </div>
+</section>
+
+<!-- DOCTORS -->
+<section id="doctors">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Doctors</span>
+      <h2>Trusted care starts with the <em class="g">right doctor</em>.</h2>
+      <p class="lede">Browse verified gynaecology and maternity specialists and book in a few taps.</p>
+    </div>
+    <div class="docs-wrap">
+      <div class="doc-photo">
+        <img src="img/community.jpg" alt="A doctor listening closely to a woman during a consultation" width="1100" height="894" loading="lazy">
+        <div class="cap"><b>Every doctor is verified</b><span>Registration, qualifications and experience are checked before anyone joins.</span></div>
+      </div>
+      <div class="doc-list">
+        <div class="filters" id="doc-filters" role="group" aria-label="Filter doctors"></div>
+        <div id="docs" style="display:grid;gap:12px"></div>
+        <a href="#doctors" class="more" style="margin-top:6px">Find a doctor near you <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTS -->
+<section id="tests" class="soft" style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Labs &amp; diagnostics</span>
+      <h2>Tests and scans, <em class="g">simplified</em>.</h2>
+      <p class="lede">Book pathology, sonography and pregnancy scans from trusted diagnostic partners. Clear prices, no surprises.</p>
+    </div>
+    <div class="tabs" role="tablist" id="test-tabs"></div>
+    <div class="tests" id="tests-grid"></div>
+  </div>
+</section>
+
+<!-- NUTRITION -->
+<section id="nutrition">
+  <div class="wrap nutri">
+    <div class="head" style="margin:0">
+      <span class="eyebrow">Nutrition</span>
+      <h2>Nutrition for you. <em class="g">Nourishment</em> for baby.</h2>
+      <p class="lede">Meal plans built from everyday Indian kitchens, adjusted for your trimester, your reports and your cravings.</p>
+      <ul class="nlist">
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Personal meal plans</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Trimester nutrition</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Healthy recipes</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Cooking videos</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Hydration tracking</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Veg, Jain &amp; non-veg</li>
+      </ul>
+      <div style="margin-top:8px"><a href="#nutrition" class="btn btn-primary">Explore nutrition <span class="arrow">→</span></a></div>
+    </div>
+    <div class="nutri-vis">
+      <div class="food-photo"><img src="img/food.jpg" alt="A bowl of fresh fruit and a warm drink" width="1000" height="1500" loading="lazy"></div>
+      <div class="plate">
+        <div class="plate-head"><h3>A day of eating well</h3><span class="tag">Sample · vegetarian</span></div>
+        <div class="tabs" role="tablist" id="meal-tabs" style="margin-bottom:6px;box-shadow:none;background:var(--cream)"></div>
+        <div id="meals"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section id="community" style="padding-top:0">
+  <div class="wrap">
+    <div class="community">
+      <div class="comm-photo"><img src="img/food2.jpg" alt="A mother kissing her newborn baby" width="1000" height="1500" loading="lazy"></div>
+      <div class="comm-body">
+        <span class="eyebrow">Community</span>
+        <h2>You don't have to go through it <em>alone</em>.</h2>
+        <p class="lede">A warm community of mothers and mothers-to-be walking the same path. Gently moderated by our care team.</p>
+        <div class="perks"><span>Ask questions</span><span>Share experiences</span><span>Learn from others</span><span>Join discussions</span></div>
+        <div class="quote-card">
+          <p class="quote" id="quote" aria-live="polite"></p>
+          <div class="who"><div class="who-l"><span class="av2" id="q-av"></span><div><b id="q-name"></b><small id="q-role"></small></div></div><div class="q-nav" id="q-nav"></div></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><a href="#community" class="btn btn-light">Join the community <span class="arrow">→</span></a><span class="sample">Sample stories</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP -->
+<section id="shop" style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Products</span>
+      <h2>Thoughtfully selected for <em class="g">mother &amp; baby</em>.</h2>
+    </div>
+    <div class="tabs" role="tablist" id="s-tabs"></div>
+    <div class="shop" id="shop-grid"></div>
+  </div>
+</section>
+
+<!-- WHY + TRUST -->
+<section class="soft" style="padding-top:0">
+  <div class="wrap">
+    <div class="head center">
+      <span class="eyebrow">Why Garbhini</span>
+      <h2>One platform. <em class="g">Every step</em> of your journey.</h2>
+    </div>
+    <div class="why" id="why"></div>
+    <div class="safety">
+      <span>✓ Secure user data</span><span>✓ Privacy-first</span><span>✓ Verified professionals</span><span>✓ Transparent information</span><span>✓ Safe healthcare practices</span>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNER -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="partner">
+      <div style="max-width:600px">
+        <h2>Are you a doctor, clinic or hospital?</h2>
+        <p class="lede">Join the Garbhini healthcare network and help make quality maternal care more accessible.</p>
+      </div>
+      <div class="ctas"><a href="#top" class="btn btn-primary" data-toast="The doctor sign-up form opens here.">Join as a doctor</a><a href="#top" class="btn btn-ghost" data-toast="The partnership form opens here.">Partner with us</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="padding-top:0">
+  <div class="wrap faq">
+    <div class="head" style="margin:0;align-content:start">
+      <span class="eyebrow">FAQ</span>
+      <h2>Questions, <em class="g">answered</em>.</h2>
+      <p class="lede">Everything you need to know about Garbhini. Can't find yours? Our care team replies within a day.</p>
+    </div>
+    <div class="faq-list" id="faq-list"></div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="final">
+      <img src="img/cooking.jpg" alt="A mother lifting her smiling baby" width="1000" height="667" loading="lazy">
+      <div class="final-body">
+        <h2>Every mother deserves <em>better care</em>.</h2>
+        <p>From preparing for pregnancy to pregnancy and motherhood, Garbhini is here for every step.</p>
+        <div><a href="#journeys" class="btn btn-light">Start your Garbhini journey <span class="arrow">→</span></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div style="display:grid;gap:16px;align-content:start">
+        <a href="#top" class="logo"><img src="img/logo.png" alt="Garbhini" width="1514" height="459" style="height:46px"></a>
+        <p style="max-width:36ch">Healthy mother, healthy child. Pregnancy care, doctors, nutrition and diagnostics in one place.</p>
+        <form class="news" id="news"><label for="news-email" style="position:absolute;left:-9999px">Email</label><input id="news-email" type="email" placeholder="Your email for weekly tips" required><button class="btn btn-primary" type="submit">Subscribe</button></form>
+      </div>
+      <div><h4>Care</h4><ul><li><a href="#doctors">Doctors</a></li><li><a href="#tests">Labs &amp; scans</a></li><li><a href="#nutrition">Nutrition</a></li><li><a href="#week">Week by week</a></li><li><a href="#shop">Shop</a></li></ul></div>
+      <div><h4>Journeys</h4><ul><li><a href="#journeys">Trying to conceive</a></li><li><a href="#journeys">Pregnancy</a></li><li><a href="#journeys">Mother &amp; baby</a></li><li><a href="#journeys">Gynaecology</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#top">About</a></li><li><a href="#top">Contact</a></li><li><a href="#top">Privacy policy</a></li><li><a href="#top">Terms</a></li></ul></div>
+    </div>
+    <div class="fine"><span>© 2026 Garbhini. Information is for education and does not replace advice from your doctor.</span><span>Made with care in India</span></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),2600)};
+const tick='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>';
+
+/* Nav */
+const mb=$('#menu-btn'),links=$('#links');
+mb.addEventListener('click',()=>{const o=links.classList.toggle('open');mb.setAttribute('aria-expanded',o)});
+links.addEventListener('click',e=>{if(e.target.tagName==='A'){links.classList.remove('open');mb.setAttribute('aria-expanded','false')}});
+document.querySelectorAll('[data-toast]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();toast(a.dataset.toast)}));
+
+/* Marquee */
+const MQ=['Verified gynaecologists','Home sample collection','Trimester meal plans','Sonography & scans','Kick tracking','Supplement reminders','Postpartum support','Hindi & English','Video consultations'];
+const mItem=t=>`<span class="marquee-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 6.8H21l-5.5 4 2.1 6.7L12 15.6l-5.6 3.9 2.1-6.7L3 8.8h6.8z"/></svg>${t}</span>`;
+$('#marquee').innerHTML=MQ.concat(MQ).map(mItem).join('');
+
+/* Tabs helper */
+function tabs(el,labels,onPick,start=0){
+  el.innerHTML='';
+  labels.forEach((l,i)=>{const b=document.createElement('button');b.className='tab';b.setAttribute('role','tab');b.textContent=l;b.id=el.id+'-'+i;
+    b.addEventListener('click',()=>{[...el.children].forEach(x=>x.setAttribute('aria-selected','false'));b.setAttribute('aria-selected','true');onPick(i)});el.appendChild(b)});
+  el.children[start].setAttribute('aria-selected','true');onPick(start);
+}
+const fade=el=>{el.classList.remove('fade');void el.offsetWidth;el.classList.add('fade')};
+
+/* Journeys */
+const J=[
+  {s:'Planning',t:'Trying to conceive',p:'The right guidance, nutrition and care while you prepare for pregnancy.',f:['Pre-pregnancy guidance','Doctor consults','Fertility support','Health tracking'],c:'Explore TTC care',art:true},
+  {s:'Weeks 1–40',t:"I'm pregnant",p:'Support for every trimester, from scans and appointments to everyday guidance.',f:['Trimester guide','Lab & scan booking','Kick tracking','Nutrition plans'],c:'Explore pregnancy care',img:'img/hero.jpg',pos:'50% 30%'},
+  {s:'After birth',t:"I'm a mother",p:'Postpartum wellness, baby care and nutrition for the months after birth.',f:['Postpartum care','Baby-care guidance','Lactation help','Mothers community'],c:'Explore mother & baby',img:'img/food2.jpg',pos:'50% 25%'},
+  {s:'Any age',t:'General gynaecology',p:"Qualified gynaecologists for women's health consultations and care.",f:['Gynae consults','Diagnostics','Sonography','Follow-up care'],c:'Explore gynaecology',img:'img/community.jpg',pos:'60% 50%'}
+];
+const ttcArt='<svg width="150" height="150" viewBox="0 0 150 150" aria-hidden="true"><circle cx="75" cy="75" r="56" fill="none" stroke="#C96A82" stroke-width="2" stroke-dasharray="4 7" opacity=".6"/><path d="M75 112V70" stroke="#4F8F6E" stroke-width="4" stroke-linecap="round"/><path d="M75 86c-18 0-26-12-26-26 16 0 26 10 26 26z" fill="#7DBF9C"/><path d="M75 74c0-16 10-28 28-28 0 18-12 28-28 28z" fill="#4F8F6E"/><circle cx="75" cy="38" r="9" fill="#E08A5C"/></svg>';
+$('#journey-cards').innerHTML=J.map(j=>`<a href="#care" class="jcard"><div class="jimg">${j.art?`<div class="jart">${ttcArt}</div>`:`<img src="${j.img}" alt="" loading="lazy" style="object-position:${j.pos}">`}<span class="stage">${j.s}</span></div>
+  <div class="jbody"><h3>${j.t}</h3><p>${j.p}</p><ul class="jlist">${j.f.map(x=>`<li>${x}</li>`).join('')}</ul><span class="more">${j.c} <span class="arrow">→</span></span></div></a>`).join('');
+
+/* Week explorer */
+const W=[[4,'a poppy seed','khaskhas',0.1,0],[5,'a sesame seed','til',0.2,0],[6,'a lentil','masoor dal',0.6,0],[7,'a jamun','jamun',1.3,1],[8,'a kidney bean','rajma',1.6,1],[9,'a grape','angoor',2.3,2],[10,'an amla','amla',3.1,4],[11,'a fig','anjeer',4.1,7],[12,'a lime','nimbu',5.4,14],[13,'a pea pod','matar',7.4,23],[14,'a lemon','bada nimbu',8.7,43],[15,'an apple','seb',10.1,70],[16,'a guava','amrood',11.6,100],[17,'a pomegranate','anaar',13,140],[18,'a capsicum','shimla mirch',14.2,190],[19,'a big tomato','tamatar',15.3,240],[20,'a banana','kela',25.6,300],[21,'a carrot','gajar',26.7,360],[22,'a sweet potato','shakarkandi',27.8,430],[23,'a ripe mango','aam',28.9,500],[24,'an ear of corn','bhutta',30,600],[25,'a radish','mooli',34.6,660],[26,'a cucumber','kheera',35.6,760],[27,'a cauliflower','phool gobhi',36.6,875],[28,'an aubergine','baingan',37.6,1000],[29,'a bottle gourd','lauki',38.6,1150],[30,'a cabbage','patta gobhi',39.9,1300],[31,'a coconut','nariyal',41.1,1500],[32,'a bunch of bananas','kele',42.4,1700],[33,'a pineapple','ananas',43.7,1900],[34,'a muskmelon','kharbooja',45,2100],[35,'a honeydew melon','sarda',46.2,2400],[36,'a papaya','papita',47.4,2600],[37,'an ash gourd','petha',48.6,2900],[38,'a pumpkin','kaddu',49.8,3100],[39,'a watermelon','tarbooz',50.7,3300],[40,'a jackfruit','kathal',51.2,3500]];
+const NOTES=[[8,'The heart starts beating and tiny limb buds appear.','Tiredness and nausea are common. Take folic acid every day.'],[13,'Fingers, toes and facial features are taking shape.','Book your NT scan for weeks 11 to 13.'],[17,'Baby can make faces and starts to hear muffled sounds.','Energy often returns. A good time to start prenatal yoga.'],[22,'Baby is moving, and you may feel the first flutters.','The anomaly scan is usually done between weeks 18 and 22.'],[27,'Lungs are developing and baby responds to your voice.','Glucose screening is usually done between weeks 24 and 28.'],[32,'Eyes open and baby gains weight quickly.','Start counting kicks daily. Check-ups move to every two weeks.'],[36,'Bones harden and most babies turn head-down.','Pack your hospital bag and finalise your birth plan.'],[40,'Full term. Baby is ready to meet you.','Weekly check-ups. Learn the signs of labour.']];
+const NS='http://www.w3.org/2000/svg',ticks=$('#ticks');
+for(let i=1;i<=40;i++){const a=i/40*Math.PI*2-Math.PI/2,r1=172,r2=i%10===0?192:185,l=document.createElementNS(NS,'line');
+  l.setAttribute('x1',200+Math.cos(a)*r1);l.setAttribute('y1',200+Math.sin(a)*r1);l.setAttribute('x2',200+Math.cos(a)*r2);l.setAttribute('y2',200+Math.sin(a)*r2);l.setAttribute('class','tick');l.dataset.w=i;ticks.appendChild(l)}
+const fW=g=>g===0?'<1 g':g<1000?g+' g':(g/1000).toFixed(1).replace(/\.0$/,'')+' kg';
+const fL=c=>c<1?Math.round(c*10)+' mm':(c%1?c.toFixed(1):c)+' cm';
+const range=$('#week-range');
+function setWeek(w){
+  w=Math.max(4,Math.min(40,w|0));range.value=w;const d=W[w-4];
+  $('#wk-num').textContent=w;
+  $('#fruit').innerHTML=`About the size of ${d[1]}<span class="hi">${d[2]} · Week ${w} of 40</span>`;
+  $('#len').textContent=fL(d[3]);$('#wt').textContent=fW(d[4]);$('#left').textContent=(40-w)+' wks';
+  $('#tri-chip').textContent=w<=12?'1st trimester':w<=27?'2nd trimester':'3rd trimester';
+  const t=Math.log(d[3]/0.1)/Math.log(512),r=10+t*118;
+  $('#baby').setAttribute('r',r);$('#halo').setAttribute('r',r+12+t*8);
+  ticks.querySelectorAll('.tick').forEach(l=>{const n=+l.dataset.w;l.classList.toggle('on',n<w);l.classList.toggle('now',n===w)});
+  const n=NOTES.find(x=>w<=x[0]);$('#n-baby').textContent=n[1];$('#n-you').textContent=n[2];
+  range.style.setProperty('--p',((w-4)/36*100)+'%');
+}
+range.addEventListener('input',e=>setWeek(+e.target.value));
+$('#due-date').addEventListener('change',e=>{const due=new Date(e.target.value);if(isNaN(due))return;
+  const w=Math.floor(40-(due-new Date())/(7*864e5));
+  if(w<4||w>42){toast('That date is outside weeks 4 to 40. Please check it.');return}
+  setWeek(w);toast('You are in week '+Math.min(w,40)+'. Here is your baby now.')});
+setWeek(24);
+
+/* App preview */
+let water=5;const gl=$('#glasses');
+function drawWater(){gl.innerHTML=Array.from({length:8},(_,i)=>`<i class="${i<water?'f':''}" data-i="${i}" title="Glass ${i+1}"></i>`).join('');$('#water-count').textContent=water+' of 8 glasses'}
+gl.addEventListener('click',e=>{const i=e.target.dataset.i;if(i===undefined)return;water=(+i+1===water)?+i:+i+1;drawWater();if(water===8)toast('8 glasses. Well done staying hydrated.')});
+drawWater();
+document.querySelectorAll('.pill-row').forEach(r=>{const tg=()=>{const d=r.classList.toggle('done');r.setAttribute('aria-checked',d)};r.addEventListener('click',tg);r.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();tg()}})});
+let kicks=6;$('#kick-btn').addEventListener('click',()=>{kicks++;$('#kicks').textContent=kicks;if(kicks===10)toast('10 kicks logged. That is a healthy pattern.')});
+
+/* Services */
+{const dn=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],d0=new Date();
+ $('#days').innerHTML=Array.from({length:6},(_,i)=>{const d=new Date(d0);d.setDate(d0.getDate()+i);return `<button class="day${i===1?' sel':''}">${i===0?'Today':dn[d.getDay()]}<b>${d.getDate()}</b></button>`}).join('');
+ $('#days').addEventListener('click',e=>{const b=e.target.closest('.day');if(!b)return;document.querySelectorAll('.day').forEach(x=>x.classList.remove('sel'));b.classList.add('sel')});}
+$('#slots').addEventListener('click',e=>{const b=e.target.closest('.slot');if(!b)return;document.querySelectorAll('.slot').forEach(s=>s.classList.remove('sel'));b.classList.add('sel');toast('Slot '+b.textContent+' selected.')});
+
+/* Trimester guide */
+const IC={eat:['var(--peach-tint)','var(--peach)','<path d="M3 12h18a9 9 0 0 1-18 0Z"/><path d="M12 8c0-3 2-5 5-5"/>'],baby:['var(--tint)','var(--rose)','<circle cx="12" cy="12" r="8"/><circle cx="13.5" cy="13" r="3.5"/>'],you:['var(--lav-tint)','var(--lav)','<circle cx="12" cy="7" r="3"/><path d="M6 21c0-4 2.7-7 6-7s6 3 6 7"/>'],test:['var(--leaf-tint)','var(--leaf)','<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/>'],move:['var(--peach-tint)','var(--peach)','<circle cx="12" cy="5" r="2"/><path d="M12 7v6l-4 8M12 13l4 8M6 11h12"/>'],doc:['var(--tint)','var(--rose)','<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/>']};
+const icon=k=>`<span class="ic" style="background:${IC[k][0]};color:${IC[k][1]}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">${IC[k][2]}</svg></span>`;
+const T=[
+ {t:'1st trimester',i:[['eat','Nutrition','Folate-rich foods, leafy greens, iron and plenty of water.'],['baby','Baby','Neural tube, heartbeat and tiny limbs form. Size of a lime by week 12.'],['you','Your body','Morning sickness, fatigue and tender breasts as hormones rise.'],['test','Tests','Blood group, CBC, thyroid, blood sugar and a dating ultrasound.'],['move','Exercise','Gentle walking, prenatal breathing and light stretching.'],['doc','Doctor visits','First prenatal visit, confirmation and dating scan.']],
+  c:['Start folic acid, 400 mcg daily','Book your first prenatal visit','Get the dating scan (weeks 6–10)','Complete booking blood tests','Book the NT scan (weeks 11–13)']},
+ {t:'2nd trimester',i:[['eat','Nutrition','Calcium, protein and healthy fats to fuel rapid growth.'],['baby','Baby','Movement begins, hearing develops and the skeleton hardens.'],['you','Your body','Energy returns, the bump grows and you may feel first kicks.'],['test','Tests','Anomaly (level II) scan, glucose screening and iron studies.'],['move','Exercise','Prenatal yoga, swimming and pelvic-floor work.'],['doc','Doctor visits','Monthly check-ups. Anomaly scan around weeks 18–22.']],
+  c:['Schedule the anomaly scan','Start iron and calcium supplements','Complete glucose screening','Begin prenatal yoga','Track your weight at each visit']},
+ {t:'3rd trimester',i:[['eat','Nutrition','Fibre and omega-3. Keep meals light and frequent.'],['baby','Baby','Lungs mature, weight climbs and baby settles into position.'],['you','Your body','More pressure, backache and practice contractions.'],['test','Tests','Growth scan, Doppler and Group B strep as advised.'],['move','Exercise','Gentle walking, birthing-ball work and breathing practice.'],['doc','Doctor visits','Every two weeks, then weekly from week 36.']],
+  c:['Count kicks every day','Attend growth scan and Doppler','Pack your hospital bag','Finalise your birth plan','Join a breastfeeding class']},
+ {t:'Birth preparation',i:[['eat','Nutrition','Light, energising meals and steady hydration for labour.'],['baby','Baby','Full term and ready to meet you.'],['you','Your body','Nesting instinct, early labour signs and more pressure.'],['test','Tests','Final growth assessment and readiness check.'],['move','Exercise','Perineal preparation, breathing and relaxation.'],['doc','Doctor visits','Weekly monitoring and a birth-plan discussion.']],
+  c:['Keep documents and hospital bag ready','Save your hospital and doctor numbers','Learn the stages of labour','Plan who will be with you','Prepare newborn essentials']}
+];
+let cur=0;const done=T.map(t=>t.c.map(()=>false));
+const renderCheck=()=>{const d=done[cur],n=d.filter(Boolean).length;$('#check-count').textContent=n+' of '+d.length+' done';$('#check-bar').style.width=(n/d.length*100)+'%'};
+tabs($('#t-tabs'),T.map(t=>t.t),i=>{cur=i;const t=T[i],p=$('#gpanel');
+  p.innerHTML=t.i.map(([k,b,x])=>`<div class="gitem">${icon(k)}<div><b>${b}</b><p>${x}</p></div></div>`).join('');fade(p);
+  $('#check-title').textContent=t.t+' checklist';
+  $('#check-list').innerHTML=t.c.map((x,k)=>`<li><label for="ck-${i}-${k}"><input type="checkbox" id="ck-${i}-${k}" data-k="${k}" ${done[i][k]?'checked':''}><span>${x}</span></label></li>`).join('');renderCheck()});
+$('#check-list').addEventListener('change',e=>{done[cur][+e.target.dataset.k]=e.target.checked;renderCheck();if(done[cur].every(Boolean))toast('All done for this stage. Lovely work.')});
+
+/* Doctors */
+const D=[
+ {n:'Dr. Meera Kulkarni',i:'MK',s:'Gynecology',f:'gyn',c:'Pune',y:11,r:'4.8',t:['In-clinic','Video','Marathi','Hindi'],bg:'var(--tint)',fg:'var(--rose)'},
+ {n:'Dr. Ananya Rao',i:'AR',s:'Fertility specialist',f:'fert',c:'Bengaluru',y:9,r:'4.9',t:['In-clinic','Video','English'],bg:'var(--lav-tint)',fg:'var(--lav)'},
+ {n:'Dr. Sana Qureshi',i:'SQ',s:'Lactation & postnatal care',f:'post',c:'Lucknow',y:7,r:'4.8',t:['Video','Hindi','Urdu'],bg:'var(--peach-tint)',fg:'var(--peach)'},
+ {n:'Dr. Priya Nair',i:'PN',s:'High-risk pregnancy',f:'gyn',c:'Mumbai',y:14,r:'4.9',t:['In-clinic','English','Malayalam'],bg:'var(--leaf-tint)',fg:'var(--leaf)'}
+];
+const DF=[['all','All'],['gyn','Gynaecology'],['fert','Fertility'],['post','Postnatal']];
+const fl=$('#doc-filters');
+fl.innerHTML=DF.map(([k,l],i)=>`<button class="fchip" data-f="${k}" aria-pressed="${i===0}">${l}</button>`).join('');
+function drawDocs(f){$('#docs').innerHTML=D.filter(d=>f==='all'||d.f===f).map(d=>`<article class="doc"><span class="avatar" style="background:${d.bg};color:${d.fg}">${d.i}</span>
+  <div style="min-width:0"><h3>${d.n}</h3><span class="meta">${d.s} · ${d.c} · ${d.y} yrs</span><div class="tags">${d.t.map(x=>`<span class="tag">${x}</span>`).join('')}</div></div>
+  <div class="doc-right"><span class="rating">${d.r}</span><button class="sbtn" data-book="${d.n}">Book</button></div></article>`).join('');fade($('#docs'))}
+fl.addEventListener('click',e=>{const b=e.target.closest('.fchip');if(!b)return;fl.querySelectorAll('.fchip').forEach(x=>x.setAttribute('aria-pressed',x===b));drawDocs(b.dataset.f)});
+$('#docs').addEventListener('click',e=>{const b=e.target.closest('[data-book]');if(b)toast('Booking with '+b.dataset.book+' opens here.')});
+drawDocs('all');
+
+/* Tests */
+const TS=[
+ ['Blood tests','CBC, thyroid, iron, blood sugar and more.','1st, 2nd & 3rd trimester','home',['Complete Blood Count (24 parameters)','Thyroid profile (TSH / Free T4)'],3,'₹299','12–24 hrs'],
+ ['Urine tests','Routine and infection screening panels.','Every prenatal check-up','home',['Routine urine microscopic exam','Urine protein / albumin test'],2,'₹199','12 hrs'],
+ ['Pregnancy tests','Beta-hCG and confirmation testing.','Weeks 3–8','home',['Quantitative Beta-hCG (serum)','Serum progesterone'],1,'₹349','Same day'],
+ ['Pathology','Comprehensive diagnostic panels.','1st & 2nd trimester','home',['Liver function test (LFT)','Kidney function test (KFT)'],2,'₹499','24–36 hrs'],
+ ['Sonography','Dating, anomaly and growth ultrasounds.','Trimester specific','centre',['Early dating & viability (wks 6–10)','NT / NB scan (wks 11–13)'],2,'₹1,199','Immediate'],
+ ['Pregnancy scans','Trimester scans with expert reporting.','Weeks 28–38','centre',['3D / 4D baby face & movement scan','Fetal Doppler & placental flow'],2,'₹1,499','Immediate + review'],
+ ['Other diagnostics','ECG, NST and specialist referrals.','All trimesters & postpartum','both',['12-lead maternal ECG','Non-stress test (NST / CTG)'],1,'₹399','Instant reading']
+];
+const whereL={home:'Home collection',centre:'At centre',both:'Home or centre'};
+function drawTests(f){const list=TS.filter(t=>f==='all'||t[3]===f||t[3]==='both');
+  const cols=matchMedia('(max-width:620px)').matches?1:matchMedia('(max-width:920px)').matches?2:3,span=(cols-list.length%cols)%cols||cols;
+  $('#tests-grid').innerHTML=list.map(t=>`<article class="test">
+  <div class="test-top"><span class="where ${t[3]==='home'?'':'centre'}">${whereL[t[3]]}</span><span class="when">${t[2]}</span></div>
+  <div><h3>${t[0]}</h3><p style="color:var(--muted);font-size:.93rem;margin-top:4px">${t[1]}</p></div>
+  <ul>${t[4].map(x=>`<li>${x}</li>`).join('')}<li class="more-t">+ ${t[5]} more ${t[5]>1?'tests':'test'}</li></ul>
+  <div class="test-foot"><div class="price"><small>Starting at</small><b>${t[6]}</b><div class="tat">Report in ${t[7]}</div></div><button class="sbtn" data-test="${t[0]}">Book test</button></div></article>`).join('')+
+  `<div class="test-cta" style="grid-column:span ${span}"><div style="display:grid;gap:8px"><h3>Not sure which test you need?</h3><p style="color:var(--muted)">Tell us your week of pregnancy and we'll show the tests your doctor usually recommends, or talk to a doctor first.</p></div><div class="ctas"><a href="#doctors" class="btn btn-primary">Ask a doctor <span class="arrow">→</span></a><a href="#guide" class="btn btn-ghost">See tests by trimester</a></div></div>`;fade($('#tests-grid'))}
+tabs($('#test-tabs'),['All tests','Home collection','At a centre'],i=>drawTests(['all','home','centre'][i]));
+$('#tests-grid').addEventListener('click',e=>{const b=e.target.closest('[data-test]');if(b)toast(b.dataset.test+' booking opens here.')});
+
+/* Meals */
+const M=[
+ [['Morning','Warm water with soaked almonds and walnuts','Omega-3'],['Breakfast','Moong dal chilla with mint chutney','Folate'],['Lunch','Palak dal, roti, rice and cucumber raita','Iron'],['Snack','Orange or mosambi and roasted makhana','Vit C'],['Dinner','Vegetable khichdi with a spoon of ghee','Easy digest']],
+ [['Morning','Soaked almonds and a glass of warm milk','Calcium'],['Breakfast','Vegetable poha with peanuts and lemon','Iron + Vit C'],['Lunch','Rajma, two rotis, jeera rice and salad','Protein'],['Snack','Roasted chana and a seasonal fruit','Protein'],['Dinner','Ragi roti, paneer bhurji and lauki sabzi','Calcium']],
+ [['Morning','Dates and a handful of mixed nuts','Energy'],['Breakfast','Oats upma loaded with vegetables','Fibre'],['Lunch','Dal, brown rice, methi sabzi and curd','Iron'],['Snack','Sprouts chaat with pomegranate','Protein'],['Dinner','Light dalia with vegetables','Fibre']]
+];
+tabs($('#meal-tabs'),['1st tri','2nd tri','3rd tri'],i=>{const m=$('#meals');m.innerHTML=M[i].map(x=>`<div class="meal"><span class="t">${x[0]}</span><span class="w">${x[1]}</span><span class="why">${x[2]}</span></div>`).join('');fade(m)},1);
+
+/* Testimonials */
+const Q=[
+ ['Garbhini made my pregnancy journey feel much more organised and less overwhelming. The trimester guidance is my daily companion.','Aditi Deshmukh','Expecting mother · Pune','AD'],
+ ['From nutrition plans to reminders, everything is in one place. The postpartum support helped me feel confident as a first-time mom.','Neha Gupta','New mother · Jaipur','NG'],
+ ['A thoughtful platform that keeps mothers informed and connected to timely, responsible care. It complements clinical visits well.','Dr. Rohan Mehta','Gynaecologist · Ahmedabad','RM'],
+ ['The week-by-week tracker is beautiful and easy to follow. It feels like someone is looking out for me.','Fatima Sheikh','Expecting mother · Lucknow','FS']
+];
+let qi=0,qt;const qn=$('#q-nav');
+Q.forEach((_,i)=>{const b=document.createElement('button');b.className='q-dot';b.setAttribute('aria-label','Story '+(i+1));b.addEventListener('click',()=>{showQ(i);restart()});qn.appendChild(b)});
+function showQ(i){qi=i;const q=Q[i];$('#quote').textContent='“'+q[0]+'”';$('#q-name').textContent=q[1];$('#q-role').textContent=q[2];$('#q-av').textContent=q[3];[...qn.children].forEach((b,k)=>b.setAttribute('aria-current',k===i))}
+function restart(){clearInterval(qt);if(!matchMedia('(prefers-reduced-motion: reduce)').matches)qt=setInterval(()=>showQ((qi+1)%Q.length),7000)}
+showQ(0);restart();
+
+/* Shop */
+const P=[
+ ['Prenatal Nutrition Starter Kit','Iron, calcium and protein essentials.','₹1,299','preg','#FCE3EA','#C96A82',0],
+ ['Prenatal Multivitamin','Daily folate, iron and DHA.','₹649','preg','#FFE8DB','#E08A5C',1],
+ ['Pregnancy Wellness Journal','Symptoms, questions and milestones.','₹599','mom','#EDE3FA','#9A6FC4',2],
+ ['Maternity Support Band','Soft support for walks and workdays.','₹799','mom','#E3F1E8','#4F8F6E',3],
+ ['Lactation Support Tea','Herbal blend for nursing mothers.','₹399','post','#FFE8DB','#C96A82',4],
+ ['Baby Skincare Set','Mild cleanser and lotion for newborns.','₹699','baby','#EDE3FA','#E08A5C',5],
+ ['Muslin Swaddle Set','Breathable cotton, pack of three.','₹899','baby','#FCE3EA','#9A6FC4',6],
+ ['Postpartum Recovery Kit','Comfort care for the first weeks.','₹1,099','post','#E3F1E8','#C96A82',7]
+];
+const SH=[c=>`<rect x="38" y="30" width="44" height="66" rx="14" fill="${c}"/><rect x="44" y="20" width="32" height="14" rx="5" fill="${c}" opacity=".6"/><rect x="46" y="54" width="28" height="18" rx="4" fill="#fff" opacity=".7"/>`,
+ c=>`<circle cx="60" cy="62" r="30" fill="${c}"/><ellipse cx="48" cy="58" rx="8" ry="5" fill="#fff" opacity=".6" transform="rotate(-30 48 58)"/><ellipse cx="68" cy="70" rx="8" ry="5" fill="#fff" opacity=".6" transform="rotate(20 68 70)"/>`,
+ c=>`<rect x="34" y="24" width="52" height="72" rx="6" fill="${c}"/><rect x="34" y="24" width="10" height="72" rx="3" fill="#fff" opacity=".4"/><path d="M54 50h22M54 60h16" stroke="#fff" stroke-width="3" stroke-linecap="round"/>`,
+ c=>`<path d="M22 66 Q60 30 98 66" stroke="${c}" stroke-width="20" fill="none" stroke-linecap="round"/><path d="M40 56 Q60 42 80 56" stroke="#fff" stroke-width="3" fill="none" opacity=".6" stroke-linecap="round"/>`,
+ c=>`<path d="M32 46h46v26a23 23 0 0 1-46 0z" fill="${c}"/><path d="M78 52h8a8 8 0 0 1 0 16h-8" stroke="${c}" stroke-width="5" fill="none"/><path d="M48 36c0-6 6-6 6-12M60 36c0-6 6-6 6-12" stroke="${c}" stroke-width="3" fill="none" stroke-linecap="round" opacity=".6"/>`,
+ c=>`<rect x="30" y="40" width="28" height="52" rx="10" fill="${c}"/><rect x="64" y="52" width="26" height="40" rx="12" fill="${c}" opacity=".65"/><rect x="38" y="30" width="12" height="12" rx="3" fill="${c}"/>`,
+ c=>`<rect x="26" y="34" width="68" height="52" rx="10" fill="${c}"/><path d="M26 52h68M26 68h68" stroke="#fff" stroke-width="3" opacity=".55"/>`,
+ c=>`<rect x="28" y="40" width="64" height="48" rx="12" fill="${c}"/><path d="M48 40v-8a12 12 0 0 1 24 0v8" stroke="${c}" stroke-width="5" fill="none"/><path d="M60 54v18M51 63h18" stroke="#fff" stroke-width="4" stroke-linecap="round"/>`];
+const FOR={preg:'Pregnancy',mom:'For mom',post:'Postpartum',baby:'For baby'};
+function drawShop(f){$('#shop-grid').innerHTML=P.filter(p=>f==='all'||p[3]===f||(f==='mom'&&(p[3]==='preg'||p[3]==='post'))).map(p=>`<a href="#shop" class="prod" data-prod="${p[0]}">
+  <div class="prod-art" style="background:${p[4]}"><span class="for">${FOR[p[3]]}</span><svg width="130" height="130" viewBox="0 0 120 120" aria-hidden="true">${SH[p[6]](p[5])}</svg><span class="add" aria-hidden="true">+</span></div>
+  <div class="prod-row"><h3>${p[0]}</h3><span class="pp">${p[2]}</span></div><p>${p[1]}</p></a>`).join('');fade($('#shop-grid'))}
+tabs($('#s-tabs'),['All','For mom','For baby','Pregnancy','Postpartum'],i=>drawShop(['all','mom','baby','preg','post'][i]));
+$('#shop-grid').addEventListener('click',e=>{const a=e.target.closest('[data-prod]');if(a){e.preventDefault();toast(a.dataset.prod+' added to your bag.')}});
+
+/* Why */
+const WHY=[['Personalised','Care designed around you and your stage.','tint','rose','<path d="M12 21s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9z"/>'],
+ ['Connected','Doctors, labs and scans that talk to each other.','lav-tint','lav','<circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M8.6 10.5l6.8-3M8.6 13.5l6.8 3"/>'],
+ ['Convenient','Everything in one place, at home or on the go.','peach-tint','peach','<rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/>'],
+ ['Educational','Reliable pregnancy and women\'s health information.','leaf-tint','leaf','<path d="M4 5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M8 7h6M8 11h6"/>'],
+ ['Supportive','A community that understands your journey.','tint','rose','<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/><circle cx="17" cy="9" r="2.5"/>'],
+ ['Mother & baby focused','Care that always keeps both of you in mind.','lav-tint','lav','<circle cx="10" cy="10" r="6"/><circle cx="16" cy="15" r="3.5"/>']];
+$('#why').innerHTML=WHY.map(w=>`<div class="why-item"><span class="ic" style="background:var(--${w[2]});color:var(--${w[3]})"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">${w[4]}</svg></span><h3>${w[0]}</h3><p>${w[1]}</p></div>`).join('');
+
+/* FAQ */
+const F=[
+ ['What is Garbhini?','A maternity care platform that brings doctors, lab tests, scans, nutrition and week-by-week guidance together, from planning a pregnancy to the months after birth.'],
+ ['Who can use Garbhini?','Women trying to conceive, expecting mothers, new mothers, and anyone looking for general gynaecology care.'],
+ ['Can I use Garbhini while trying to conceive?','Yes. You get pre-pregnancy guidance, doctor consultations, nutrition support, health tracking and fertility-related support.'],
+ ['What support is available during pregnancy?','Trimester guidance, doctor appointments, lab and scan booking, nutrition plans, safe exercise, supplement reminders, water and kick tracking, and weekly education.'],
+ ['Can I book doctor appointments?','Yes. Choose a verified gynaecologist or specialist and book an in-clinic visit or a video consultation.'],
+ ['Can I schedule lab tests and scans?','Yes. Blood and urine samples can be collected at home. Scans are done at partner diagnostic centres, and reports come to your phone.'],
+ ['Does Garbhini provide personalised nutrition?','Yes. Meal plans are built from everyday Indian food and adjusted for your trimester, with vegetarian, Jain and non-vegetarian options.'],
+ ['Can new mothers use Garbhini?','Yes. There is postpartum guidance, maternal nutrition, baby-care advice, lactation support and a mothers community.'],
+ ['Does Garbhini provide general gynaecology services?','Yes. You can consult qualified gynaecologists for women\'s health concerns, book diagnostics and sonography, and get follow-up care.'],
+ ['Is Garbhini a replacement for my doctor?','No. Garbhini supports your care between visits. Always follow the advice of your own doctor.']
+];
+$('#faq-list').innerHTML=F.map(([q,a],i)=>`<details ${i===0?'open':''}><summary>${q}</summary><p>${a}</p></details>`).join('');
+
+/* Newsletter */
+$('#news').addEventListener('submit',e=>{e.preventDefault();toast('Subscribed. Weekly tips are on their way.');e.target.reset()});
+})();
+</script>
